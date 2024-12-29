@@ -1,0 +1,30 @@
+Cho một tập gồm các số nguyên a1,a2,...,an. thực hiện trên tập số nguyên đã cho một dãy thao tác gồm 2 loại như sau:
+	insert x: thêm một phần tử giá trị x vào tập.
+	delete-max: xóa khỏi tập và trả về giá trị của phần tử lớn nhất trong tập.
+intput
+	dòng 1: 1 số nguyên n(1<=n<=100000)
+	dòng 2: a1,a2,...,an.
+	các dòng tiếp theo, mỗi dòng chứa 1 ký tự thao tác với định dạng như đã đề cập ở trên. đầu vào input kết thức bởi 1 dòng chứa duy nhất 1 ký tự *
+output
+	đưa ra giá trị trả về của mỗi thao tác delete-max có trong đầu vào input
+
+10
+8 5 7 9 10 4 7 2 2 6
+insert 3
+delete-max
+insert 6
+insert 10
+insert 7
+insert 8
+delete-max
+delete-max
+delete-max
+delete-max
+*
+
+
+10
+10
+9
+8
+8

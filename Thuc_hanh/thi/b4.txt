@@ -1,0 +1,22 @@
+Given a sequence of n integers a=a1, . . ., an. A subsequence of a consists of contiguous elements of a (for example, ai, ai+1, . . . ,aj). The weight of a subsequence is defined to be the sum of its elements. A subsequence is called even-subsequnce if its weight is even. Find the even-subsequence of a having largest weight.def max_even_subseq():
+    n = int(input())
+    a = list(map(int, input().split()))
+
+    dp = [[0 for _ in range(2)] for _ in range(n+1)]
+
+    for i in range(1, n+1):
+        if a[i-1] % 2 == 0:
+            dp[i][0] = max(dp[i-1][0], dp[i-1][1] + a[i-1])
+            dp[i][1] = dp[i-1][1]
+        else:
+            dp[i][1] = max(dp[i-1][0] + a[i-1], dp[i-1][1])
+            dp[i][0] = dp[i-1][0]
+
+    return max(dp[n][0], dp[n][1])
+
+print(max_even_subseq())
+
+The Kingdom ALPHA has n warehouses of golds located on a straight line and are numbered 1, 2,..., n. The warehouse i has amount of ai (ai is non-negative integer) and is located at coordinate i (i=1,...,n). The King of ALPHA opens a competition for hunters who are responsible to find a subset of gold warehouses having largest total amount of golds with respect to the condition that the distance between two selected warehouses must be greater than or equal to L1 and less than or equal to L2.
+
+Vương quốc ALPHA có n kho vàng nằm trên một đường thẳng và được đánh số 1, 2,..., n. Kho i có số lượng là ai (ai là số nguyên không âm) và nằm tại tọa độ i (i=1,...,n). Vua ALPHA mở ra cuộc thi dành cho các thợ săn có trách nhiệm tìm ra tập hợp con kho vàng có tổng lượng vàng lớn nhất với điều kiện khoảng cách giữa hai kho được chọn phải lớn hơn hoặc bằng L1 và nhỏ hơn hoặc bằng đến L2.
+
