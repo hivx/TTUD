@@ -27,7 +27,7 @@ int max_even_subseq() {
 }
 
 int main() {
-    cout << max_even_subseq() << endl;
+    cout << "hello" << max_even_subseq() << endl;
     return 0;
 }
 

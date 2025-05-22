@@ -1,65 +1,77 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
+
 using namespace std;
 
-const int MOD = 1e9 + 7;
-
-long long mergeAndCount(vector<int>& arr, vector<int>& temp, int left, int mid, int right) {
-    int i = left, j = mid + 1, k = left;
-    long long invCount = 0;
-
-    while (i <= mid && j <= right) {
-        if (arr[i] <= arr[j]) {
-            temp[k++] = arr[i++];
-        } else {
-            temp[k++] = arr[j++];
-            invCount += (mid - i + 1);
-            invCount %= MOD;
+int maxNonOverlappingSegments(int n, vector<pair<int, int>>& segments) {
+    // Sort segments by their end points `bi`
+    sort(segments.begin(), segments.end(), [](const pair<int, int>& a, const pair<int, int>& b) {
+        return a.second < b.second;
+    });
+    
+    int count = 0;  // Count of non-overlapping segments
+    int last_end = -1;  // Tracks the end of the last selected segment
+    
+    // Iterate over each segment
+    for (const auto& segment : segments) {
+        int a = segment.first;
+        int b = segment.second;
+        
+        // If this segment does not overlap with the last selected segment
+        if (a > last_end) {
+            count++;       // Include this segment
+            last_end = b;  // Update the end of the last included segment
         }
     }
-
-    while (i <= mid) {
-        temp[k++] = arr[i++];
-    }
-
-    while (j <= right) {
-        temp[k++] = arr[j++];
-    }
-
-    for (int i = left; i <= right; i++) {
-        arr[i] = temp[i];
-    }
-
-    return invCount;
-}
-
-long long mergeSortAndCount(vector<int>& arr, vector<int>& temp, int left, int right) {
-    long long invCount = 0;
-    if (left < right) {
-        int mid = left + (right - left) / 2;
-
-        invCount += mergeSortAndCount(arr, temp, left, mid);
-        invCount %= MOD;
-        invCount += mergeSortAndCount(arr, temp, mid + 1, right);
-        invCount %= MOD;
-
-        invCount += mergeAndCount(arr, temp, left, mid, right);
-        invCount %= MOD;
-    }
-    return invCount;
+    
+    return count;
 }
 
 int main() {
     int n;
     cin >> n;
-    vector<int> arr(n), temp(n);
-
-    for (int i = 0; i < n; i++) {
-        cin >> arr[i];
+    
+    vector<pair<int, int>> segments(n);
+    for (int i = 0; i < n; ++i) {
+        cin >> segments[i].first >> segments[i].second;
     }
-
-    long long result = mergeSortAndCount(arr, temp, 0, n - 1);
-    cout << result << endl;
-
+    
+    // Get the result and print it
+    cout << maxNonOverlappingSegments(n, segments) << endl;
+    
     return 0;
 }
+/*
+Description
+Given a set of segments X = {(a
+1
+, b
+1
+), . . . , (a
+n
+, b
+n
+)} in which ai < bi are coordinates of the segment i on a line, i = 1, …, n.  Find a subset of X having largest cardinality in which no two segments of the subset intersect
+Input
+Line 1: contains a positive integer n (1 <= n <= 100000)
+Line i+1 (i= 1,...,n): contains ai and bi (0 <= a
+i
+ <= b
+i 
+<= 1000000)
+Output
+Number of segments in the solution found.
+Example
+Input
+6
+0 10
+3 7
+6 14
+9 11
+12 15
+17 19
+
+Output
+4
+*/

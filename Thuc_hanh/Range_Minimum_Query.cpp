@@ -112,3 +112,14 @@ int main() {
 // Line k+3 (k = 1, . . ., m): contains ik, jk (0 <= ik < jk < n)
 // Output
 // Write the value Q
+// Input
+// 16
+// 2 4 6 1 6 8 7 3 3 5 8 9 1 2 6 4
+// 4
+// 1 5
+// 0 9
+// 1 15
+// 6 10
+
+// Output
+// 6

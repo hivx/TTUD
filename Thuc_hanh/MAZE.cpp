@@ -44,6 +44,19 @@
 // Dòng i+1 (i=1,...,n): ghi dòng thứ i của ma trận A
 // Output
 // Ghi giá số bước cần di chuyển ngắn nhất để thoát ra khỏi mê cung, hoặc ghi giá trị -1 nếu không tìm thấy đường đi nào thoát ra khỏi mê cung.
+// Input
+// 8 12 5 6
+// 1 1 0 0 0 0 1 0 0 0 0 1
+// 1 0 0 0 1 1 0 1 0 0 1 1
+// 0 0 1 0 0 0 0 0 0 0 0 0
+// 1 0 0 0 0 0 1 0 0 1 0 1
+// 1 0 0 1 0 0 0 0 0 1 0 0
+// 1 0 1 0 1 0 0 0 1 0 1 0
+// 0 0 0 0 1 0 1 0 0 0 0 0
+// 1 0 1 1 0 1 1 1 0 1 0 1
+
+// Output
+// 7
 
 #include<bits/stdc++.h>
 
